@@ -4,7 +4,7 @@ import TrafficLightsComponent from "./components/TrafficLightsComponent";
 function App() {
   return (
     <>
-      <h1>This website is being hosted in Netlify</h1>
+      <h1>This text only appears in the testing 1 branch</h1>
       <TrafficLightsComponent />
     </>
   );
