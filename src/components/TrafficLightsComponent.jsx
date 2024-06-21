@@ -45,13 +45,13 @@ const TrafficLightsComponent = () => {
           <div
             key={colorConfig.backgroundColor}
             className={"trafficLight"}
-            style={{
+            /* style={{
               backgroundColor:
                 currentColor ===
-                arrayOfLightsConfigs[colorConfig].backgroudColor
+                arrayOfLightsConfigs[colorConfig].backgroundColor
                   ? colorConfig.backgroundColor
                   : undefined,
-            }}
+            }} */
           >
             light
           </div>
