@@ -6,8 +6,11 @@ function App() {
 
   return (
     <>
-      <h1>This text only appears in the testing 1 branch</h1>
-      <TrafficLightsComponent arrayToUse={simpleArray} />
+      <h1>Traffic Lights</h1>
+      <h2>
+        https://www.greatfrontend.com/questions/user-interface/traffic-light
+      </h2>
+      <TrafficLightsComponent />
     </>
   );
 }

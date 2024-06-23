@@ -5,28 +5,29 @@ const lightsConfigs = {
   green: {
     backgroundColor: "green",
     next: "yellow",
+    timeActive: 3000,
   },
   yellow: {
     backgroundColor: "yellow",
     next: "red",
+    timeActive: 500,
   },
   red: {
     backgroundColor: "red",
     next: "green",
+    timeActive: 4000,
   },
 };
-
-const arrayOflightsConfigs = Object.keys(lightsConfigs);
 
 const TrafficLightsComponent = () => {
   const [currentColor, setCurrentColor] = useState("green");
 
   useEffect(() => {
-    const { next } = lightsConfigs[currentColor];
+    const { next, timeActive } = lightsConfigs[currentColor];
 
     const timerId = setTimeout(() => {
       setCurrentColor(next);
-    }, 1000);
+    }, timeActive);
 
     return () => {
       clearInterval(timerId);
@@ -35,19 +36,16 @@ const TrafficLightsComponent = () => {
 
   return (
     <div className="boxes-container">
-      {arrayOflightsConfigs.map((currColorConfig, index) => {
+      {Object.keys(lightsConfigs).map((color) => {
         return (
           <div
-            key={index.backgroundColor}
+            key={color}
             className={"trafficLight"}
             style={{
-              backgroundColor:
-                currentColor === arrayOflightsConfigs[index]
-                  ? currentColor
-                  : undefined,
+              backgroundColor: currentColor === color ? color : undefined,
             }}
           >
-            {arrayOflightsConfigs[index]}
+            {color}
           </div>
         );
       })}
