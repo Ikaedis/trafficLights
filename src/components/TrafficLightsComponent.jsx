@@ -1,59 +1,53 @@
 import "./TrafficLightsComponent.css"; // Importing the CSS file
 import { useEffect, useState } from "react";
 
-const greenConfig = {
-  backgroundColor: "green",
-  next: "yellowConfig",
+const lightsConfigs = {
+  green: {
+    backgroundColor: "green",
+    next: "yellow",
+  },
+  yellow: {
+    backgroundColor: "yellow",
+    next: "red",
+  },
+  red: {
+    backgroundColor: "red",
+    next: "green",
+  },
 };
 
-const yellowConfig = {
-  backgroundColor: "yellow",
-  next: "redConfig",
-};
-
-const redConfig = {
-  backgroundColor: "red",
-  next: "greenConfig",
-};
-
-const arrayOfLightsConfigs = [greenConfig, yellowConfig, redConfig];
-
-function getConfigByName(configName) {
-  switch (configName) {
-    case "greenConfig":
-      return greenConfig;
-    case "yellowConfig":
-      return yellowConfig;
-    case "redConfig":
-      return redConfig;
-    default:
-      throw new Error("Invalid configuration name");
-  }
-}
+const arrayOflightsConfigs = Object.keys(lightsConfigs);
 
 const TrafficLightsComponent = () => {
-  const [currentColor, setCurrentColor] = useState(
-    arrayOfLightsConfigs[0].backgroundColor
-  );
+  const [currentColor, setCurrentColor] = useState("green");
 
-  useEffect(() => {}, [currentColor]);
+  useEffect(() => {
+    const { next } = lightsConfigs[currentColor];
+
+    const timerId = setTimeout(() => {
+      setCurrentColor(next);
+    }, 1000);
+
+    return () => {
+      clearInterval(timerId);
+    };
+  }, [currentColor]);
 
   return (
     <div className="boxes-container">
-      {arrayOfLightsConfigs.map((colorConfig) => {
+      {arrayOflightsConfigs.map((currColorConfig, index) => {
         return (
           <div
-            key={colorConfig.backgroundColor}
+            key={index.backgroundColor}
             className={"trafficLight"}
-            /* style={{
+            style={{
               backgroundColor:
-                currentColor ===
-                arrayOfLightsConfigs[colorConfig].backgroundColor
-                  ? colorConfig.backgroundColor
+                currentColor === arrayOflightsConfigs[index]
+                  ? currentColor
                   : undefined,
-            }} */
+            }}
           >
-            light
+            {arrayOflightsConfigs[index]}
           </div>
         );
       })}
