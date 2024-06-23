@@ -2,8 +2,6 @@ import "./App.css";
 import TrafficLightsComponent from "./components/TrafficLightsComponent";
 
 function App() {
-  const simpleArray = [1, 2, 3];
-
   return (
     <>
       <h1>Traffic Lights</h1>
